@@ -11,7 +11,7 @@ env:
     - CLOUD_FUNCTION_REGION=us-east1
 
 before_install:
-- openssl aes-256-cbc -K $encrypted_49bd1f276a94_key -iv $encrypted_49bd1f276a94_iv -in chotot-deployer.json.enc -out chotot-deployer.json -d
+- openssl aes-256-cbc -K $encrypted_b49379da8d30_key -iv $encrypted_b49379da8d30_iv -in chotot-deployer.json.enc -out chotot-deployer.json -d
 - curl https://sdk.cloud.google.com | bash > /dev/null
 - source "$HOME/google-cloud-sdk/path.bash.inc"
 - gcloud auth activate-service-account --key-file=chotot-deployer.json
@@ -21,6 +21,6 @@ before_install:
 install: true # no-op
 
 script:
-    - go mod vendor && go test ./workers && \
-        gcloud functions deploy "${CLOUD_FUNCTION_NAME}" \
-        --runtime=go111 --trigger-bucket=hermes --entry-point=PushNotification
+- go mod vendor && go test ./workers && \
+    gcloud functions deploy "${CLOUD_FUNCTION_NAME}" \
+    --runtime=go111 --trigger-bucket=hermes --entry-point=PushNotification
