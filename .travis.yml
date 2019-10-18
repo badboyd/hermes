@@ -18,6 +18,8 @@ before_install:
 - gcloud config set project "${GCP_PROJECT_ID}"
 - gcloud components install beta
 
+install: true # no-op
+
 script:
     - go mod vendor && go test ./workers && \
         gcloud functions deploy "${CLOUD_FUNCTION_NAME}" \
