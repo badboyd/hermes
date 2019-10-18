@@ -29,7 +29,4 @@ before_script:
 
 script:
 - go mod vendor && go test ./workers
-- gcloud functions deploy "${CLOUD_FUNCTION_NAME}" \
-    --runtime=go111 --trigger-topic=hermes \
-    --entry-point=PushNotification \
-    --region="${CLOUD_FUNCTION_REGION}"
+- gcloud functions deploy "${CLOUD_FUNCTION_NAME}" --runtime=go111 --trigger-topic=hermes --entry-point=PushNotification --region="${CLOUD_FUNCTION_REGION}"
