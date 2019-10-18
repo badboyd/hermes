@@ -1,4 +1,4 @@
-package main
+package workers
 
 import (
 	"context"
@@ -63,6 +63,7 @@ type (
 		Code    string `mapstructure:"code"`
 	}
 
+	// TopicPublish ...
 	TopicPublish struct {
 		Data      PubSubMessage `json:"data"`
 		EventID   string        `json:"eventID"`
@@ -71,6 +72,7 @@ type (
 		Resource  string        `json:"resource"`
 	}
 
+	// PubSubMessage ...
 	PubSubMessage struct {
 		Attributes map[string]string `json:"attributes"`
 		Data       string            `json:"data"`
