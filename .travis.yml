@@ -16,7 +16,7 @@ before_install:
 - source "$HOME/google-cloud-sdk/path.bash.inc"
 - gcloud auth activate-service-account --key-file=chotot-deployer.json
 - gcloud config set project "${GCP_PROJECT_ID}"
-- gcloud components install beta
+install: true
 
 install: true # no-op
 
