@@ -1,14 +1,15 @@
 language: go
 
 go:
-    - 1.11
+  - 1.11
 
 env:
-    global:
-    - GCP_PROJECT_ID=cicd-222403
-    - GO111MODULE=on
-    - CLOUD_FUNCTION_NAME=hermes
-    - CLOUD_FUNCTION_REGION=us-east1
+  global:
+  - GCP_PROJECT_ID=cicd-222403
+  - GO111MODULE=on
+  - CLOUD_FUNCTION_NAME=hermes
+  - CLOUD_FUNCTION_REGION=us-east1
+  - CLOUDSDK_CORE_DISABLE_PROMPTS=1 
 
 before_install:
 - openssl aes-256-cbc -K $encrypted_b49379da8d30_key -iv $encrypted_b49379da8d30_iv -in chotot-deployer.json.enc -out chotot-deployer.json -d
@@ -16,7 +17,6 @@ before_install:
 - source "$HOME/google-cloud-sdk/path.bash.inc"
 - gcloud auth activate-service-account --key-file=chotot-deployer.json
 - gcloud config set project "${GCP_PROJECT_ID}"
-install: true
 
 install: true # no-op
 
