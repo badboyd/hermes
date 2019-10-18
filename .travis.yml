@@ -3,6 +3,10 @@ language: go
 go:
   - 1.11
 
+cache:
+  directories:
+    - "$HOME/google-cloud-sdk/"
+
 env:
   global:
   - GCP_PROJECT_ID=cicd-222403
@@ -20,12 +24,12 @@ before_install:
 
 install: true # no-op
 
+before_script:
+- cd workers
+
 script:
-- |
-  set -ex;
-  go mod vendor && go test ./workers && cd workers && \ 
-  gcloud functions deploy "${CLOUD_FUNCTION_NAME}" \
-  --runtime=go111 --trigger-topic=hermes \
-  --entry-point=PushNotification \
-  --region="${CLOUD_FUNCTION_REGION}"
-  set +x
+- go mod vendor && go test ./workers
+- gcloud functions deploy "${CLOUD_FUNCTION_NAME}" \
+    --runtime=go111 --trigger-topic=hermes \
+    --entry-point=PushNotification \
+    --region="${CLOUD_FUNCTION_REGION}"
